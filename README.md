@@ -131,7 +131,9 @@ functional tests, end-to-end tests, and acceptance tests. Test coverage
 will be computed by the number of lines of code being tested divided by
 the total number of lines. We will use the Python PEP 8 style guide for
 both our ML model code and our Discord bot code:
+
 [[https://peps.python.org/pep-0008/]{.ul}](https://peps.python.org/pep-0008/).
+
 New branches will be opened when new features are planned; in our case,
 that might be new commands for the Discord bot or updates to the ML
 model. Whenever there is a merge request, all members will meet to
