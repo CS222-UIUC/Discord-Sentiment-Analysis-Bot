@@ -11,7 +11,7 @@ import config
 initial_extensions = ['general']
 
 bot = commands.Bot(command_prefix=config.BOT_PREFIX,
-                   pm_help=True, case_insensitive=True)
+                   pm_help=True, case_insensitive=True, intents=discord.Intents.all)
 
 if __name__ == '__main__':
 
