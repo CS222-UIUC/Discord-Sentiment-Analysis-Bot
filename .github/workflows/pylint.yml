@@ -20,9 +20,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
         pip install discord.py
+        pip install pytest-cov
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
     - name: Test with pytest
       run: |
         pytest
+    - name: Test Coverage with pycov
+      run: |
+        pycov
