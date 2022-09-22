@@ -27,7 +27,7 @@ jobs:
     - name: Test with pytest 
     #add more test files as needed 
       run: |
-        pytest test.py 
+        pytest tests.py 
     - name: Test Coverage with pycov
       run: |
         pytest --cov=$(git ls-files '*.py')
