@@ -25,6 +25,8 @@ jobs:
      # run: |
       #  pylint $(git ls-files '*.py')
     - name: Test with pytest & Coverage with pycov
-    #add more test files as needed 
+    #We can create a tests folder and then run pytest /tests in order to run tests on multiple files
+    #Put the files we want to test coverage after --cov=
+    #Running only on run.py for now 
       run: |
-        pytest tests.py --cov=$(git ls-files '*.py')
+        pytest tests.py --cov=run.py
