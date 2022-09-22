@@ -25,8 +25,9 @@ jobs:
      # run: |
       #  pylint $(git ls-files '*.py')
     - name: Test with pytest 
+    #add more test files as needed 
       run: |
-        pytest
+        pytest test.py 
     - name: Test Coverage with pycov
       run: |
         pytest --cov=$(git ls-files '*.py')
