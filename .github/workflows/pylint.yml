@@ -21,9 +21,9 @@ jobs:
         pip install pylint
         pip install discord.py
         pip install pytest-cov
-    #- name: Analysing the code with pylint
-     # run: |
-      #  pylint $(git ls-files '*.py')
+    - name: Analysing the code with pylint
+      run: |
+        pylint $(git ls-files '*.py')
     - name: Test with pytest & Coverage with pycov
     #We can create a tests folder and then run pytest /tests in order to run tests on multiple files
     #Put the files we want to test coverage after --cov=
