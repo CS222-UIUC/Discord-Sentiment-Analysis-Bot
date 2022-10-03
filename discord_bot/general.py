@@ -4,7 +4,7 @@ import discord #pylint: disable=W0611
 from discord.ext import commands
 from discord.ext.commands import has_permissions #pylint: disable=W0611
 
-import discord_bot.config as config #pylint: disable=E0401 #pylint: disable=R0402
+import discord_bot.config as config #pylint: disable=E0401, R0402
 
 class General(commands.Cog):
     """Class with commands for bot"""
