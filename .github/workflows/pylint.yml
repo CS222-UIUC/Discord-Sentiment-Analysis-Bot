@@ -29,4 +29,4 @@ jobs:
     #Put the files we want to test coverage after --cov=
     #Running only on run.py for now 
       run: |
-        pytest tests.py --cov=run.py
+        pytest /tests/tests.py --cov=run.py
