@@ -1,7 +1,7 @@
 """Module used to run the discord bot"""
 
 import discord
-import discord_bot.config as config #pylint: disable=E
+import discord_bot.config as config #pylint: disable=E, R0402
 
 intents = discord.Intents.default()
 
