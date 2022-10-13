@@ -138,4 +138,14 @@ New branches will be opened when new features are planned; in our case,
 that might be new commands for the Discord bot or updates to the ML
 model. Whenever there is a merge request, all members will meet to
 discuss whether to approve or deny the request.
-test - yash
+test 
+
+**Datasets** 
+
+For building and training our model, we have pulled, compiled & organized data from the following datasets:
+
+https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis
+https://www.kaggle.com/datasets/cosmos98/twitter-and-reddit-sentimental-analysis-dataset
+
+
+
