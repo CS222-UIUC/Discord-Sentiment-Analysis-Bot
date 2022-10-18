@@ -27,8 +27,8 @@ async def on_ready():
         Nothing
     """
     # start up model
-    input = discord.Activity(type=discord.ActivityType.watching, name='your comments 👀')
-    await bot.change_presence(activity=input)
+    input_activity = discord.Activity(type=discord.ActivityType.watching, name='your comments 👀')
+    await bot.change_presence(activity=input_activity)
     print(f'{bot.user.name} has connected to Discord!')
 
 @bot.event
