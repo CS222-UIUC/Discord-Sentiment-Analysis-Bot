@@ -1,3 +1,4 @@
+"""Testing framework for testing the bot"""
 import pytest
 import discord.ext.test as dpytest
 from discord.ext import commands
@@ -5,6 +6,9 @@ from discord import Intents
 
 @pytest.mark.asyncio
 async def test_bot():
+    """
+        message: test cases are writted here for the bot
+    """
     bot = commands.Bot("/", intents=Intents(members=True))
 
     @bot.command()
