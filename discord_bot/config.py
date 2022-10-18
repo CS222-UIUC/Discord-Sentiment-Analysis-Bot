@@ -11,17 +11,18 @@ HELP_PING_SHORT = "Pong"
 HELP_PING_LONG = "Test bot response status"
 
 HELP_EMBED = discord.Embed()
-HELP_EMBED.add_field(name="ML BOT 38", value="""Hello!
+HELP_EMBED.add_field(name="ML BOT 38", value=
+"""Hello!
 
-                                                I am ML Bot 38! I was developed by CS222 group 38!
-                                                I use machine learning to determine what kind of message you send.
+I am ML Bot 38! I was developed by CS222 group 38!
+I use machine learning to determine what kind of message you send.
 
-                                                So far, I will react with the following responses:
-                                                        👍 : positive comment
-                                                        👊 : neutral comment
-                                                        👎 : negative comment
-                                                
-                                                Keep commenting to see what I think of your message!""")
+So far, I will react with the following responses:
+        👍 : positive comment
+        👊 : neutral comment
+        👎 : negative comment
+
+Keep commenting to see what I think of your message!""")
 
 STATUS_CHANGE = [(discord.ActivityType.watching, "your comments 👀"),
                  (discord.ActivityType.listening, "the server"),

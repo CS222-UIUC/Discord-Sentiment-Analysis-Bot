@@ -1,7 +1,7 @@
 """Bot"""
+import random
 import config
 import discord
-import random
 
 bot = discord.Client()
 
@@ -27,7 +27,8 @@ async def on_ready():
         Nothing
     """
     # start up model
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='your comments 👀'))
+    input = discord.Activity(type=discord.ActivityType.watching, name='your comments 👀')
+    await bot.change_presence(activity=input)
     print(f'{bot.user.name} has connected to Discord!')
 
 @bot.event
