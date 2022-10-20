@@ -30,4 +30,4 @@ jobs:
     #Put the files we want to test coverage after --cov=
     #Running only on run.py for now 
       run: |
-        pytest --cov=./media_handler --cov=./discord_bot ./tests/ 
+        pytest --cov=./media_handler --cov=./discord_bot ./tests/test_media_handler.py
