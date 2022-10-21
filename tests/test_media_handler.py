@@ -2,8 +2,8 @@
 
 #using sys to allow us to import our media_handler file for testing
 import sys
-sys.path.append("./course-project-group-38/media_handler")
-
+sys.path.append("../course-project-group-38/media_handler")
+print(sys.path)
 import media_handler as mh #pylint: disable=C E
 
 #Tests
