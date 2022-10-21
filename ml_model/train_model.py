@@ -18,6 +18,7 @@ def preprocess_text(input_text):
     for sentence in preprocessed_sentences:
 
         tokenized_sentence = word_tokenize(sentence)
+
         for i in range(len(tokenized_sentence)): #pylint:disable=C
             tokenized_sentence[i] = tokenized_sentence[i].lower()
             if tokenized_sentence[i].isalpha() and tokenized_sentence[i] not in stopword_list:
