@@ -1,10 +1,10 @@
 """Takes in unprocessed message from discord bot and processes it to work with our ML model"""
 import re
 import nltk #pylint: disable=W
-nltk.download('stopwords')
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
+nltk.download('stopwords')
 stopwords = stopwords.words('english')
 
 def msg_to_lower(message):
