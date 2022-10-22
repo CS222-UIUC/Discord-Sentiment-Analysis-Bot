@@ -23,7 +23,7 @@ jobs:
         pip install pytest-cov
         pip install dpytest
         pip install nltk
-        nltk.download('popular')
+        python3 -m nltk.downloader popular
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
