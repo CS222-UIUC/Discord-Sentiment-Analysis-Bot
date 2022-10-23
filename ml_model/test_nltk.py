@@ -1,14 +1,14 @@
-from distutils.command import clean
-import nltk as nt
-import pandas as pd
-import numpy as np
-import re
 import random
+import re
+# import pandas as pd
+# import numpy as np
+
+
 
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from nltk import FreqDist
+# from nltk import FreqDist
 from nltk import classify
 from nltk import NaiveBayesClassifier
 
@@ -19,7 +19,7 @@ def read_data(filename):
         file = open(filename,'r')
         next(file)
     except IOError:
-            print("Error with file")
+        print("Error with file")
     else:
         for line in file:
             line = line.split(',')
@@ -65,9 +65,10 @@ def remove_stopwords(tweet_tokens):
 
 def lemmatize(clean_tweet):
     lemmatizer = WordNetLemmatizer()
-    # getting lemma of each word 
-    lemmatized_words = [lemmatizer.lemmatize(word,pos="v") if "ing" in word else lemmatizer.lemmatize(word)
-        for word in clean_tweet]
+    # getting lemma of each word
+    lemmatized_words = [lemmatizer.lemmatize(word,pos="v")
+        if "ing" in word else lemmatizer.lemmatize(word)
+            for word in clean_tweet]
     return lemmatized_words
 
 def preprocess_tweet(tweet):
@@ -85,9 +86,9 @@ def get_tweets_for_model(processed_tweets):
             result.append({word_token : True})
     return result
 
-def train(train,test):
-    classifier = NaiveBayesClassifier.train(train)
-    print(f"Classifier accuracy percent: {(classify.accuracy(classifier, test))*100}.")
+def train(train_data,test_data):
+    classifier = NaiveBayesClassifier.train(train_data)
+    print(f"Classifier accuracy percent: {(classify.accuracy(classifier, test_data))*100}.")
     print(classifier.show_most_informative_features(10))
 
 def main(filename):
@@ -101,7 +102,6 @@ def main(filename):
     processed_pos_tweets = [preprocess_tweet(tweet) for tweet in all_pos_tweets]
     processed_neu_tweets = [preprocess_tweet(tweet) for tweet in all_neu_tweets]
     processed_neg_tweets = [preprocess_tweet(tweet) for tweet in all_neg_tweets]
-    
     # Getting Data Ready for model
 
     pos_tweets_model = get_tweets_for_model(processed_pos_tweets)
@@ -115,9 +115,7 @@ def main(filename):
     neg_data = [(tweet_dict,"Negative") for tweet_dict in neg_tweets_model]
     dataset = pos_data + neu_data + neg_data
     random.shuffle(dataset)
-    train_data = dataset[:30]
-    test_data = dataset[30:]
-    train(train_data,test_data)
+    train(dataset[:30],dataset[30:])
 
 main('train_data.csv')
 
