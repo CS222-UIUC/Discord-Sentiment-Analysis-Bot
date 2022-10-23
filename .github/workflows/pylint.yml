@@ -21,6 +21,7 @@ jobs:
         pip install pylint
         pip install discord.py
         pip install pytest-cov
+        pip install nltk
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
