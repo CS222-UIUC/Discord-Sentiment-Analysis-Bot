@@ -1,6 +1,6 @@
 import random
 import re
-import nltk
+# import nltk
 # import pandas as pd
 # import numpy as np
 
@@ -15,9 +15,25 @@ from nltk import NaiveBayesClassifier
 
 
 def read_data(filename):
+    """
+        Reads data from csv file.
+
+        This function reads the data line by line (skipping the first line)
+        and creates a list of tuples with the first entry being the raw tweet
+        and the second entry being the polarity score (0,-1,1)
+
+        Parameters
+        ----------
+        filename : string
+            filename of dataset
+        Returns
+        -------
+        data[(tweet,value)]
+            The raw tweet and it's polarity
+    """
     data = []
     try:
-        file = open(filename,'r')
+        file = open(filename,'r',encoding="utf8")
         next(file)
     except IOError:
         print("Error with file")
@@ -26,6 +42,7 @@ def read_data(filename):
             line = line.split(',')
             sentence = ''.join(line[-2])
             value = line[-1]
+            value = float(value.replace('\n',''))
             data.append((sentence,value))
     return data
 
@@ -37,7 +54,7 @@ def remove_hyperlinks_and_styles(tweet):
     return new_tweet
 
 def classify_tweets(entry,category):
-    value = float(entry[1].replace('\n',''))
+    value = entry[1]
     result = ""
     if category == '+':
         if value == 1.0:
