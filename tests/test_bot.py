@@ -14,9 +14,9 @@ async def test_bot():
     """
         description: test cases are writted here for the bot
     """
-    #pylint: disable=wrong-import-position
+    # pylint: disable=C0415
     import discord_bot.bot as dbot
-    #pylint: enable=wrong-import-position
+    
 
     dpytest.configure(dbot.bot)
 
