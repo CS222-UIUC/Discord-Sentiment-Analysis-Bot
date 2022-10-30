@@ -133,7 +133,8 @@ def main(filename):
     neg_data = [(tweet_dict,"Negative") for tweet_dict in neg_tweets_model]
     dataset = pos_data + neu_data + neg_data
     random.shuffle(dataset)
-    train(dataset[:30],dataset[30:])
+    train_percent = int(0.7*len(dataset))
+    train(dataset[:train_percent],dataset[train_percent:])
 
 main('train_data.csv')
 
