@@ -2,7 +2,7 @@
 # import discord.ext.test as dpytest
 from discord.ext import commands
 from discord import Intents
-# import random
+import random
 # import discord_bot.config as config
 # import discord
 
@@ -12,31 +12,31 @@ bot = commands.Bot("-", intents=Intents().all())
 async def ping(ctx):
     await ctx.send("pong")
 
-#################################
-# remove after model is complete
-# def determine_sentiment(message):
-#     """
-#     Arguments:
-#         message: message content from discord message
-#     Returns:
-#         sentiment -1, 0, 1
-#     """
-#     print(message)
-#     return random.randint(-1,1)
 ################################
+# remove after model is complete
+def determine_sentiment(message):
+    """
+    Arguments:
+        message: message content from discord message
+    Returns:
+        sentiment -1, 0, 1
+    """
+    print(message)
+    return random.randint(-1,1)
+###############################
 
-# @bot.event
-# async def on_ready():
-#     """
-#     Arguments:
-#         message: runs on ready
-#     Returns:
-#         Nothing
-#     """
-#     # start up model
-#     input_activity = discord.Activity(type=discord.ActivityType.watching, name='your comments 👀')
-#     await bot.change_presence(activity=input_activity)
-#     print(f'{bot.user.name} has connected to Discord!')
+@bot.event
+async def on_ready():
+    """
+    Arguments:
+        message: runs on ready
+    Returns:
+        Nothing
+    """
+    # start up model
+    input_activity = discord.Activity(type=discord.ActivityType.watching, name='your comments 👀')
+    await bot.change_presence(activity=input_activity)
+    print(f'{bot.user.name} has connected to Discord!')
 
 # @bot.event
 # async def on_message(message):

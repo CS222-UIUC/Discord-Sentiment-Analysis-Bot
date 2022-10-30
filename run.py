@@ -1,4 +1,6 @@
+"""run to start bot"""
+
 import discord_bot.bot as dbot
-import discord_bot.config as config
+from discord_bot import config
 
 dbot.bot.run(config.BOT_TOKEN)
