@@ -1,5 +1,6 @@
-import nltk
-from nltk.tokenize import sent_tokenize, word_tokenize 
+"""File to train our model"""
+import nltk #pylint: disable=W
+from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 import pandas as pd
@@ -11,12 +12,11 @@ stopword_list = stopwords.words('english')
 
 
 def preprocess_text(input_text):
-    global stopword_list
+    """Function to Pre-process our dataset"""
+    global stopword_list #pylint:disable= W C
 
     preprocessed_text = []
     lemmatizer = WordNetLemmatizer()
-
-
     tokenized_sentence = word_tokenize(input_text)
     
     for i in range(len(tokenized_sentence)):
@@ -65,4 +65,5 @@ def train_model():
     print("Accuracy: ", accuracy_score(test_label, predictions) * 100)
 
 train_model()
+
 
