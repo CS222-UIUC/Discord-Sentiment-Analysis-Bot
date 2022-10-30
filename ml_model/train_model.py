@@ -4,11 +4,11 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer 
-from sklearn.model_selection import train_test_split 
-from sklearn.linear_model import LogisticRegression 
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
-stopword_list = stopwords.words('english') 
+stopword_list = stopwords.words('english')
 
 
 def preprocess_text(input_text):
@@ -17,18 +17,12 @@ def preprocess_text(input_text):
 
     preprocessed_text = []
     lemmatizer = WordNetLemmatizer()
-    tokenized_sentence = word_tokenize(input_text)
-    
+    tokenized_sentence = word_tokenize(input_text) 
     for i in range(len(tokenized_sentence)):
-        
         tokenized_sentence[i] = tokenized_sentence[i].lower()
-
-
         if tokenized_sentence[i].isalpha() and tokenized_sentence[i] not in stopword_list:
-
             tokenized_sentence[i] = lemmatizer.lemmatize(tokenized_sentence[i])
             preprocessed_text.append(tokenized_sentence[i])
-
     output_text = ""
     for word in preprocessed_text:
         output_text = output_text + word + " "
