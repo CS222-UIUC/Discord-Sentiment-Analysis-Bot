@@ -1,7 +1,7 @@
 """Standard config file for discord bot"""
 import discord
 
-BOT_TOKEN: str = "MTAxNjUyMDE5MDIzOTk4MTcxOA.GRVGz6.h3MyxS8Pt61bY3YaYZKSgJlGLFQ2Lmj6sn7Ss4"
+BOT_TOKEN: str = "MTAxNjUyMDE5MDIzOTk4MTcxOA.GTT27C.l4TeJv9u7jjqPOeq8zTJepZo0g95p-h2lJxqXY"
 BOT_PREFIX = "-"
 
 STARTUP_MESSAGE = "Starting Bot..."

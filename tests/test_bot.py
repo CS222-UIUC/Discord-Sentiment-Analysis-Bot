@@ -4,18 +4,19 @@ import discord.ext.test as dpytest
 from discord.ext import commands
 from discord import Intents
 
+import sys
+sys.path.append('../COURSE-PROJECT-GROUP-38')
+
+# import discord_bot.bot as dbot
+
 @pytest.mark.asyncio
 async def test_bot():
     """
-        message: test cases are writted here for the bot
+        description: test cases are writted here for the bot
     """
-    bot = commands.Bot("/", intents=Intents().all())
+    import discord_bot.bot as dbot
 
-    @bot.command()
-    async def ping(ctx):
-        await ctx.send("pong")
+    dpytest.configure(dbot.bot)
 
-    dpytest.configure(bot)
-
-    await dpytest.message("/ping")
+    await dpytest.message("-ping")
     assert dpytest.verify().message().content("pong")
