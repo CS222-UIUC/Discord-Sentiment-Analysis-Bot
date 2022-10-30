@@ -14,7 +14,9 @@ def msg_to_lower(message):
 
 def remove_irrelevant_chars(message):
     """Removes irrelevant characters from the message, like punctuation and other symbols"""
-    return re.sub("[^a-zA-Z0-9]"," ",message)
+    message = re.sub("[^a-zA-Z0-9]"," ",message)
+    message = re.sub("\n", " ", message)
+    return message
 
 def process_using_nltk(message):
     """Tokenizes & processes a message using nltk,
