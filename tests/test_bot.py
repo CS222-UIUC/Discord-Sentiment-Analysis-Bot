@@ -16,7 +16,6 @@ async def test_bot():
     """
     # pylint: disable=C0415
     import discord_bot.bot as dbot
-    
 
     dpytest.configure(dbot.bot)
 
