@@ -1,6 +1,6 @@
 """File to train our model"""
 import nltk #pylint: disable=W
-from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 import pandas as pd
@@ -17,7 +17,7 @@ def preprocess_text(input_text):
 
     preprocessed_text = []
     lemmatizer = WordNetLemmatizer()
-    tokenized_sentence = word_tokenize(input_text) 
+    tokenized_sentence = word_tokenize(input_text)
     for i in range(len(tokenized_sentence)):
         tokenized_sentence[i] = tokenized_sentence[i].lower()
         if tokenized_sentence[i].isalpha() and tokenized_sentence[i] not in stopword_list:
@@ -31,6 +31,7 @@ def preprocess_text(input_text):
     return output_text
 
 def train_model():
+    """Function to train Logistic Regression model"""
     train = pd.read_csv("twitter_training.csv", header=None)
     test = pd.read_csv("twitter_validation.csv", header=None)
     train.columns=['id','topic','label','text']
@@ -41,7 +42,7 @@ def train_model():
     bag_of_words = CountVectorizer(
         tokenizer=word_tokenize,
         stop_words=stopword_list,
-        ngram_range=(1, 1) 
+        ngram_range=(1, 1)
     )
 
     train_split, test_split = train_test_split(train, test_size=0.3, random_state=0)
