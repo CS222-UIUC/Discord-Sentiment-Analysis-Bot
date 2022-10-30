@@ -5,8 +5,7 @@ import discord.ext.test as dpytest
 # from discord.ext import commands
 # from discord import Intents
 
-sys.path.append('../COURSE-PROJECT-GROUP-38')
-sys.path.append('../discord_bot')
+sys.path.append('../course-project-group-38')
 
 # import discord_bot.bot as dbot
 
