@@ -9,7 +9,8 @@ async def test_bot():
     """
         message: test cases are writted here for the bot
     """
-    bot = commands.Bot("/", intents=Intents(members=True))
+    bot = commands.Bot("/", intents=Intents().all())
+
 
     @bot.command()
     async def ping(ctx):
