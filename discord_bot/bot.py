@@ -1,15 +1,19 @@
+"""bot.py"""
 # import pytest
 # import discord.ext.test as dpytest
+import random
 from discord.ext import commands
 from discord import Intents
-import random
 # import discord_bot.config as config
-# import discord
+import discord
 
 bot = commands.Bot("-", intents=Intents().all())
 
 @bot.command()
 async def ping(ctx):
+    """
+    generic test function
+    """
     await ctx.send("pong")
 
 ################################
@@ -55,7 +59,7 @@ async def on_ready():
 #         new_status = config.STATUS_CHANGE[selection]
 
 #         print("status changed to: ", new_status)
-#         await bot.change_presence(activity=discord.Activity(type=new_status[0], name=new_status[1]))
+#       await bot.change_presence(activity=discord.Activity(type=new_status[0], name=new_status[1]))
 #     if message.author == bot.user:
 #         return
 
