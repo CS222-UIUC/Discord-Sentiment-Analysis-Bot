@@ -40,7 +40,6 @@ async def on_message(message):
     Returns:
         will react according to messages sent by user. defined below
     """
-
     # 10% chance to change bot status for each message
     change_selection = random.randint(0,9)
     if not change_selection:

@@ -11,6 +11,7 @@ async def test_bot():
     """
     bot = commands.Bot("/", intents=Intents().all())
 
+
     @bot.command()
     async def ping(ctx):
         await ctx.send("pong")
