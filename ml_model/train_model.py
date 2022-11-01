@@ -32,10 +32,7 @@ def preprocess_text(input_text):
 
 def train_model():
     """Function to train Logistic Regression model"""
-    train_df = pd.read_csv("fixed_final_dataset.csv", header=None, dtype=str)
-
-
-    train, test = train_test_split(train_df, test_size=0.3)
+    train = pd.read_csv("fixed_final_dataset.csv", header=None, dtype=str)
     train = train.dropna()
 
     train.columns=["comment", "category"]
