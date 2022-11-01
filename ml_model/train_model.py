@@ -32,12 +32,14 @@ def preprocess_text(input_text):
 
 def train_model():
     """Function to train Logistic Regression model"""
-    train = pd.read_csv("twitter_training.csv", header=None)
-    test = pd.read_csv("twitter_validation.csv", header=None)
-    train.columns=['id','topic','label','text']
-    test.columns=['id','topic','label','text']
-    train["processed"] = [preprocess_text(str(x)) for x in train["text"]]
-    test["processed"] = [preprocess_text(str(x)) for x in test["text"]]
+    train_df = pd.read_csv("fixed_final_dataset.csv", header=None, dtype=str)
+
+
+    train, test = train_test_split(train_df, test_size=0.3)
+    train = train.dropna()
+
+    train.columns=["comment", "category"]
+    train["processed"] = [preprocess_text(str(x)) for x in train["comment"]]
 
     bag_of_words = CountVectorizer(
         tokenizer=word_tokenize,
@@ -47,11 +49,11 @@ def train_model():
 
     train_split, test_split = train_test_split(train, test_size=0.3, random_state=0)
 
-    train_text = bag_of_words.fit_transform(train_split.processed)
-    test_text = bag_of_words.transform(test_split.processed)
+    train_text = bag_of_words.fit_transform(train_split.processed.astype(str))
+    test_text = bag_of_words.transform(test_split.processed.astype(str))
 
-    train_label = train_split["label"]
-    test_label = test_split["label"]
+    train_label = train_split["category"]
+    test_label = test_split["category"]
 
     model = LogisticRegression(C=1, solver="liblinear",max_iter=1500)
     model.fit(train_text, train_label)
