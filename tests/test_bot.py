@@ -3,7 +3,6 @@ import pytest
 import discord.ext.test as dpytest
 from discord.ext import commands
 from discord import Intents
-import random
 
 @pytest.mark.asyncio
 async def test_basic():
@@ -32,15 +31,15 @@ async def test_reaction():
     """
     bot = commands.Bot("-", intents=Intents().all())
     def determine_sentiment(message):
-            """
-            Arguments:
-                message: message content from discord message
-            Returns:
-                sentiment -1, 0, 1
-            """
-            print(message)
-            # simulate positive connotation for test case
-            return 1
+        """
+        Arguments:
+            message: message content from discord message
+        Returns:
+            sentiment -1, 0, 1
+        """
+        print(message)
+        # simulate positive connotation for test case
+        return 1
 
     @bot.command()
     async def verify(ctx):
