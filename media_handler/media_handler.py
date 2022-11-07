@@ -50,5 +50,3 @@ def process_using_nltk(message):
                 tokenized_processed_message.append(lemmatizer.lemmatize(word))
 
     return tokenized_processed_message
-
-process_message("Testing whether we need we'll process this correctly!@$!(@#. Testing a second sentence")
