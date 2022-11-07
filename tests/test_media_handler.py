@@ -27,3 +27,10 @@ def test_punctuation_removed():
     correct_output = "Testing  whether  punctuation  and symbols      are removed "
     assert mh.remove_irrelevant_chars(test_string) == correct_output
 
+def test_process_using_nltk():
+    """Test whether we tokenize and process a message correctly"""
+    test_string = "This is a sample message to test our preprocessing, it should remove stopwords like wouldn't and lemmatize messages" #pylint: disable= C
+    correct_output = ['sample', 'message', 'test', 'preprocessing', 'remove', 'stopwords', 'like', 'lemmatize', 'message'] #pylint: disable= C
+    test_string = mh.msg_to_lower(test_string)
+    test_string = mh.remove_irrelevant_chars(test_string)
+    assert mh.process_using_nltk(test_string) == correct_output

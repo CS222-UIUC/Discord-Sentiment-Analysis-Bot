@@ -12,6 +12,7 @@ async def test_basic():
     # pylint: disable=C0415
     bot = commands.Bot("-", intents=Intents().all())
 
+
     @bot.command()
     async def ping(ctx):
         """
