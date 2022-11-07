@@ -4,6 +4,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -44,7 +45,7 @@ def train_model():
         ngram_range=(1, 1)
     )
 
-    train_split, test_split = train_test_split(train, test_size=0.3, random_state=0)
+    train_split, test_split = train_test_split(train, test_size=0.2, random_state=0)
 
     train_text = bag_of_words.fit_transform(train_split.processed.astype(str))
     test_text = bag_of_words.transform(test_split.processed.astype(str))
@@ -52,7 +53,7 @@ def train_model():
     train_label = train_split["category"]
     test_label = test_split["category"]
 
-    model = LogisticRegression(C=1, solver="liblinear",max_iter=1500)
+    model = RandomForestClassifier()
     model.fit(train_text, train_label)
 
     predictions = model.predict(test_text)
