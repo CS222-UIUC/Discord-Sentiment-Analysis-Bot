@@ -1,12 +1,25 @@
-"""Takes in unprocessed message from discord bot and processes it to work with our ML model"""
+"""Takes in unprocessed message from discord bot and processes it to work with our ML model, use """
 import re
 import nltk #pylint: disable=W
+import sklearn #pylint: disable=W E
 from nltk.tokenize import sent_tokenize, word_tokenize
-from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import CountVectorizer #pylint: disable=E
+from nltk.stem import WordNetLemmatizer #pylint: disable=C
 from nltk.corpus import stopwords
 nltk.download('stopwords')
-stopwords = stopwords.words('english')
+stopwords_list = stopwords.words('english')
 
+#Function to use
+def process_message(message):
+    """The main function to call and process a message"""
+    message = msg_to_lower(message)
+    message = remove_irrelevant_chars(message)
+    message = process_using_nltk(message)
+    bow = CountVectorizer(tokenizer=word_tokenize,stop_words=stopwords_list)
+    vector = bow.fit_transform(message)
+    return vector
+
+#Helpers
 def msg_to_lower(message):
     """Makes the message into all lowercase characters"""
     return message.lower()
@@ -14,7 +27,9 @@ def msg_to_lower(message):
 
 def remove_irrelevant_chars(message):
     """Removes irrelevant characters from the message, like punctuation and other symbols"""
-    return re.sub("[^a-zA-Z0-9]"," ",message)
+    message = re.sub("[^a-zA-Z0-9]"," ",message)
+    message = re.sub("\n", " ", message)
+    return message
 
 def process_using_nltk(message):
     """Tokenizes & processes a message using nltk,
@@ -31,8 +46,7 @@ def process_using_nltk(message):
         words = word_tokenize(sen)
         #Add lematized words to tokenized message & remove stopwords
         for word in words:
-            if word not in stopwords:
+            if word not in stopwords_list:
                 tokenized_processed_message.append(lemmatizer.lemmatize(word))
 
-    print(tokenized_processed_message)
     return tokenized_processed_message
