@@ -1,11 +1,22 @@
-"""Bot"""
+"""bot.py"""
+# import pytest
+# import discord.ext.test as dpytest
 import random
+from discord.ext import commands
+from discord import Intents
 import config
 import discord
 
-bot = discord.Client()
+bot = commands.Bot("-", intents=Intents().all())
 
-#################################
+@bot.command()
+async def ping(ctx):
+    """
+    generic test function
+    """
+    await ctx.send("pong")
+
+################################
 # remove after model is complete
 def determine_sentiment(message):
     """
@@ -16,7 +27,7 @@ def determine_sentiment(message):
     """
     print(message)
     return random.randint(-1,1)
-################################
+###############################
 
 @bot.event
 async def on_ready():
@@ -62,6 +73,5 @@ async def on_message(message):
             await message.add_reaction('👊')
         else: # sentiment == -1
             await message.add_reaction('👎')
-
 
 bot.run(config.BOT_TOKEN)
