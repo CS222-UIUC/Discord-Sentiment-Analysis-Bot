@@ -3,7 +3,6 @@
 #using sys to allow us to import our media_handler file for testing
 import sys
 sys.path.append("../course-project-group-38/media_handler")
-print(sys.path)
 import media_handler as mh #pylint: disable=C E
 
 #Tests
@@ -26,6 +25,12 @@ def test_punctuation_removed():
     test_string = "Testing! whether, punctuation? and symbols &*(^ are removed."
     correct_output = "Testing  whether  punctuation  and symbols      are removed "
     assert mh.remove_irrelevant_chars(test_string) == correct_output
+
+def test_random_newlines_removed():
+    """Tests the removal of newline characters inside the message itself"""
+    test_string = "Te\nst the removal of random\n newlines \n"
+    correct_output = "Test the removal of random newlines"
+    return mh.remove_irrelevant_chars(test_string) == correct_output
 
 def test_process_using_nltk():
     """Test whether we tokenize and process a message correctly"""
