@@ -3,7 +3,7 @@ import re
 import nltk #pylint: disable=W
 import sklearn #pylint: disable=W E
 from nltk.tokenize import sent_tokenize, word_tokenize
-from sklearn.feature_extraction.text import CountVectorizer #pylint: disable=E
+#from sklearn.feature_extraction.text import CountVectorizer #pylint: disable=E
 from nltk.stem import WordNetLemmatizer #pylint: disable=C
 from nltk.corpus import stopwords
 nltk.download('stopwords')
