@@ -6,8 +6,18 @@ from discord.ext import commands
 from discord import Intents
 import config
 import discord
+import pickle
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import CountVectorizer
+from nltk.stem import WordNetLemmatizer
+
+import nltk
+nltk.download('punkt')
 
 bot = commands.Bot("-", intents=Intents().all())
+
+model, bag_of_words = None, None
 
 @bot.command()
 async def ping(ctx):
@@ -16,18 +26,28 @@ async def ping(ctx):
     """
     await ctx.send("pong")
 
-################################
-# remove after model is complete
+with open('model.pkl', 'rb') as f:
+    model = pickle.load(f)
+
+with open('vectorizer.pkl', 'rb') as f:
+    bag_of_words = pickle.load(f)
+
 def determine_sentiment(message):
     """
     Arguments:
-        message: message content from discord message
+        test: message content from discord message
     Returns:
         sentiment -1, 0, 1
     """
-    print(message)
-    return random.randint(-1,1)
-###############################
+    global bag_of_words
+    global model
+
+    test = [message]
+    # test = ["I hate this stupid movie."]
+    test_text = bag_of_words.transform(test)
+    predictions = model.predict(test_text)
+    
+    return int(float(predictions[0]))
 
 @bot.event
 async def on_ready():
