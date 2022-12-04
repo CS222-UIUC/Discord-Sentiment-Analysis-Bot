@@ -222,7 +222,6 @@ def train_model(clean_tweets_data, classifiers_list):
     # print(clf_loss)
 
 def predict_tweet(tweet, clean_data, classifer):
-    
     # Creating a SVM Model (In our case this model would have been already created)
      x_train, x_test, y_train, y_test = train_test_split(clean_data['Preprocessed'],
         clean_data['Polarity'], test_size=0.25, random_state=30)
