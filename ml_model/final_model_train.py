@@ -221,9 +221,38 @@ def train_model(clean_tweets_data, classifiers_list):
     # clf_loss = log_loss(y_test, y_test_pred)
     # print(clf_loss)
 
+def predict_tweet(tweet, clean_data, classifer):
+    
+    # Creating a SVM Model (In our case this model would have been already created)
+     x_train, x_test, y_train, y_test = train_test_split(clean_data['Preprocessed'],
+        clean_data['Polarity'], test_size=0.25, random_state=30)
+    
+    # TFIDF Vectorizer
+    vectorizer = tfidf()
+    tf_x_train = vectorizer.fit_transform(x_train)
+    tf_x_test = vectorizer.transform(x_test)
+    # For our single tweet (create vectorizer and transform)
+    tf_tweet_test = vectorizer.transform(tweet)
+    
+    clf = LinearSVC(random_state=0)
+    clf.fit(tf_x_train, y_train)
+    y_test_pred = clf.predict(tf_x_test)
+    # single tweet prediction
+    tweet_predict = clf.predict(tf_tweet_test)
+    report = classification_report(y_test, y_test_pred,output_dict=True)
+    print("SVM Accuracy Report")
+    print(report)
+    print("\nAccuracy for SVM :",metrics.accuracy_score(y_test, y_test_pred))
+    # What Model Predicted Polarity of Tweet to be (An array)
+    print("\nPolarity of Single tweet:",tweet_predict)
+    
+
 frac = read_data("fixed_final_dataset.csv")
 clean_tweets = preprocessing(frac)
 # print(frac['Polarity'].value_counts())
 
 classifiers = ["svm", "log", "rfc"]
 train_model(clean_tweets,classifiers)
+text =  "I love animals so much!"
+predict_classifiers = ["svm"]
+cleaned_tweet = preprocess_tweet(text, clean_tweets, predict_classifiers)
