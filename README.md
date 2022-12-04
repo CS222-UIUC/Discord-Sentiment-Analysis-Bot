@@ -147,5 +147,5 @@ For building and training our model, we have pulled, compiled & organized data f
 https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis
 https://www.kaggle.com/datasets/cosmos98/twitter-and-reddit-sentimental-analysis-dataset
 
-
+**Team Member Roles**
 
