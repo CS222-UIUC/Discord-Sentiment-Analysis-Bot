@@ -23,7 +23,6 @@ jobs:
         pip install pytest-cov
         pip install nltk
         pip install dpytest
-        pip install nltk
         python3 -m nltk.downloader popular
         pip install PyNaCl
         pip install pytest-asyncio==0.19.0

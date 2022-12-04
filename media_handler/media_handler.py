@@ -3,7 +3,7 @@ import re
 import nltk #pylint: disable=W
 import sklearn #pylint: disable=W E
 from nltk.tokenize import sent_tokenize, word_tokenize
-from sklearn.feature_extraction.text import CountVectorizer #pylint: disable=E
+#from sklearn.feature_extraction.text import CountVectorizer #pylint: disable=E
 from nltk.stem import WordNetLemmatizer #pylint: disable=C
 from nltk.corpus import stopwords
 nltk.download('stopwords')
@@ -15,9 +15,9 @@ def process_message(message):
     message = msg_to_lower(message)
     message = remove_irrelevant_chars(message)
     message = process_using_nltk(message)
-    bow = CountVectorizer(tokenizer=word_tokenize,stop_words=stopwords_list)
-    vector = bow.fit_transform(message)
-    return vector
+    #bow = CountVectorizer(tokenizer=word_tokenize,stop_words=stopwords_list)
+    #vector = bow.fit_transform(message)
+    return message
 
 #Helpers
 def msg_to_lower(message):
