@@ -148,4 +148,7 @@ https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis
 https://www.kaggle.com/datasets/cosmos98/twitter-and-reddit-sentimental-analysis-dataset
 
 **Team Member Roles**
+Yash, Afif and Sumeet worked on the ML model training. Michael worked on the frontend Discord bot (media handler, media parser) and its interactions with the ML model.
 
+**Model .pkl File**
+The model's pickle file was too large to store in GitHub, so here is a link to it in Google Drive: https://drive.google.com/file/d/1jdI6M3uzVeugvzk4R7jPBgTpvJzF0xsM/view?usp=sharing
