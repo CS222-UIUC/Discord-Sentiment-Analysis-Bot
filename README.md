@@ -1,6 +1,6 @@
-# course-project-group-38
+# Discord ML Sentiment Bot
 course-project-group-38 created by GitHub Classroom
-ML Sentiment Bot
+
 
 **Pitch**
 
