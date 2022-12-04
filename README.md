@@ -160,3 +160,19 @@ This file should be put in the discord_bot folder. The command to run the bot is
 python bot.py
 ```
 with Python version 3.10.
+
+
+**Requirements:**
+Run the following to install all requirements necessary to run the bot.
+
+        python -m pip install --upgrade pip
+        pip install pylint
+        pip install discord.py==1.6.0
+        pip install pytest-cov
+        pip install nltk
+        pip install dpytest
+        python3 -m nltk.downloader popular
+        pip install PyNaCl
+        pip install pytest-asyncio==0.19.0
+        pip install -U scikit-learn
+        pip install pandas
