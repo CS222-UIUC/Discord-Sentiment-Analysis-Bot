@@ -13,8 +13,7 @@ nltk.download('punkt')
 
 bot = commands.Bot("-", intents=Intents().all())
 
-global MODEL
-global BAG_OF_WORDS
+MODEL, BAG_OF_WORDS = None, None
 
 @bot.command()
 async def ping(ctx):
