@@ -1,0 +1,23 @@
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Unzipping tokenizers/punkt.zip.
+[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Unzipping corpora/stopwords.zip.
+[nltk_data] Downloading package wordnet to /root/nltk_data...
+[nltk_data] Downloading package omw-1.4 to /root/nltk_data...
+SVM Accuracy Report
+{'-1.0': {'precision': 0.7918131072979119, 'recall': 0.772436974789916, 'f1-score': 0.7820050364118968, 'support': 14875}, '0.0': {'precision': 0.7572062777465141, 'recall': 0.8024118738404453, 'f1-score': 0.7791539327649992, 'support': 15092}, '1.0': {'precision': 0.7857339955849889, 'recall': 0.7576664671057007, 'f1-score': 0.7714450201496834, 'support': 15033}, 'accuracy': 0.7775555555555556, 'macro avg': {'precision': 0.7782511268764717, 'recall': 0.777505105245354, 'f1-score': 0.7775346631088599, 'support': 45000}, 'weighted avg': {'precision': 0.7781759171207994, 'recall': 0.7775555555555556, 'f1-score': 0.7775210901739228, 'support': 45000}}
+
+Accuracy for SVM : 0.7775555555555556
+Logisitic Regression Report
+{'-1.0': {'precision': 0.7871525116700342, 'recall': 0.7595294117647059, 'f1-score': 0.773094293143561, 'support': 14875}, '0.0': {'precision': 0.7423282700940902, 'recall': 0.799827723297111, 'f1-score': 0.7700060600261538, 'support': 15092}, '1.0': {'precision': 0.78757124982622, 'recall': 0.7536752477881993, 'f1-score': 0.7702505183724804, 'support': 15033}, 'accuracy': 0.7710888888888889, 'macro avg': {'precision': 0.7723506771967815, 'recall': 0.7710107942833387, 'f1-score': 0.7711169571807317, 'support': 45000}, 'weighted avg': {'precision': 0.772259343599763, 'recall': 0.7710888888888889, 'f1-score': 0.7711085580248596, 'support': 45000}}
+
+Accuracy for Log : 0.7710888888888889
+Random Forest Classifier Report
+{'-1.0': {'precision': 0.8396870554765291, 'recall': 0.7936806722689076, 'f1-score': 0.8160359426300329, 'support': 14875}, '0.0': {'precision': 0.799276236429433, 'recall': 0.8780811025708984, 'f1-score': 0.8368274816872946, 'support': 15092}, '1.0': {'precision': 0.8292479108635098, 'recall': 0.7921239938801303, 'f1-score': 0.8102609464838567, 'support': 15033}, 'accuracy': 0.8214666666666667, 'macro avg': {'precision': 0.8227370675898239, 'recall': 0.8212952562399788, 'f1-score': 0.821041456933728, 'support': 45000}, 'weighted avg': {'precision': 0.8226467945426114, 'recall': 0.8214666666666667, 'f1-score': 0.8210797290830713, 'support': 45000}}
+
+Accuracy for RFC : 0.8214666666666667
+
+Accuracy for RFC(max_d=2500): 0.8227555555555556
+Cleaning up all outstanding Run operations, waiting 300.0 seconds
+0 items cleaning up...
+Cleanup took 2.1457672119140625e-06 seconds
