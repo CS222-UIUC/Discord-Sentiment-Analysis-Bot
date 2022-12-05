@@ -2,22 +2,19 @@
 # import pytest
 # import discord.ext.test as dpytest
 import random
+import pickle
 from discord.ext import commands
 from discord import Intents
 import config
 import discord
-import pickle
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import CountVectorizer
-from nltk.stem import WordNetLemmatizer
-
 import nltk
+
 nltk.download('punkt')
 
 bot = commands.Bot("-", intents=Intents().all())
 
-model, bag_of_words = None, None
+global MODEL
+global BAG_OF_WORDS
 
 @bot.command()
 async def ping(ctx):
@@ -27,10 +24,10 @@ async def ping(ctx):
     await ctx.send("pong")
 
 with open('model.pkl', 'rb') as f:
-    model = pickle.load(f)
+    MODEL = pickle.load(f)
 
 with open('vectorizer.pkl', 'rb') as f:
-    bag_of_words = pickle.load(f)
+    BAG_OF_WORDS = pickle.load(f)
 
 def determine_sentiment(message):
     """
@@ -39,14 +36,12 @@ def determine_sentiment(message):
     Returns:
         sentiment -1, 0, 1
     """
-    global bag_of_words
-    global model
 
     test = [message]
     # test = ["I hate this stupid movie."]
-    test_text = bag_of_words.transform(test)
-    predictions = model.predict(test_text)
-    
+    test_text = BAG_OF_WORDS.transform(test)
+    predictions = MODEL.predict(test_text)
+
     return int(float(predictions[0]))
 
 @bot.event
