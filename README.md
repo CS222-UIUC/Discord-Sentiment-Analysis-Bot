@@ -149,7 +149,7 @@ https://www.kaggle.com/datasets/cosmos98/twitter-and-reddit-sentimental-analysis
 
 **Team Member Roles**
 
-Yash, Afif and Sumeet worked on the ML model training. Michael worked on the frontend Discord bot (media handler, media parser) and its interactions with the ML model.
+Yash, Sumeet and Afif worked on the ML model training. Afif worked on the media handler. Michael worked on the frontend Discord bot (media parser) and its interactions with the ML model.
 
 **Model .pkl File**
 
