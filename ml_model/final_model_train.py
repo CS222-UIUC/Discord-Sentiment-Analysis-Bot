@@ -4,10 +4,14 @@
     to obtain the highest accuracy
 
 """
+#%%
 import re
 import warnings
 import nltk
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -18,7 +22,7 @@ from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
-# from sklearn.metrics import log_loss
+from sklearn.metrics import confusion_matrix
 from sklearn import metrics
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -57,9 +61,9 @@ def read_data(filename):
     # -1.0 66410 entries
     # Shuffles and gets a 45k of each
     data = data.sample(frac=1, random_state=1).reset_index(drop=True) # shuffles all tweets
-    sample = data[data['Polarity'] == 1.0][:60000]
-    sample = sample.append(data[data['Polarity'] == 0.0][:60000])
-    sample = sample.append(data[data['Polarity'] == -1.0][:60000])
+    sample = data[data['Polarity'] == 1.0][0:]
+    sample = sample.append(data[data['Polarity'] == 0.0][0:])
+    sample = sample.append(data[data['Polarity'] == -1.0][0:])
     sample = sample.reset_index(drop=True)
     return sample
 
@@ -175,8 +179,11 @@ def train_model(clean_tweets_data, classifiers_list):
             Final Accuracy of Model
     """
     # Splitting cleaned tweets into train and test data
+    # test size = 0.25
+    # stratify=y (train & test contain each polarity in the same ratio as in the original dataset)
     x_train, x_test, y_train, y_test = train_test_split(clean_tweets_data['Preprocessed'],
-        clean_tweets_data['Polarity'], test_size=0.25, random_state=30)
+        clean_tweets_data['Polarity'], test_size=0.25,
+        random_state=30, stratify=clean_tweets_data['Polarity'])
     # print(f"Train: {x_train.shape,y_train.shape} Test: {x_test.shape,y_test.shape}")
 
     # TFIDF Vectorizer
@@ -191,7 +198,14 @@ def train_model(clean_tweets_data, classifiers_list):
             report = classification_report(y_test, y_test_pred,output_dict=True)
             print("SVM Accuracy Report")
             print(report)
+            with open("SVM_Accuracy_Report.txt", 'w', encoding="utf8") as file:
+                for key, value in report.items():
+                    if key in ['-1.0','0.0','1.0']:
+                        file.write(f'{key} Class :\n {value}\n')
+                    else:
+                        file.write(f'{key} :\n {value}\n')
             print("\nAccuracy for SVM :",metrics.accuracy_score(y_test, y_test_pred))
+            show_confusion_matrix(y_test, y_test_pred)
         elif classifier == "log":
             clf = LogisticRegression(max_iter=1000,solver="saga")
             clf.fit(tf_x_train, y_train)
@@ -199,6 +213,10 @@ def train_model(clean_tweets_data, classifiers_list):
             report = classification_report(y_test, y_test_pred,output_dict=True)
             print("Logisitic Regression Report")
             print(report)
+            with open("LogReg_Accuracy_Report.txt", 'w', encoding="utf8") as file:
+                for key, value in report.items():
+                    file.write(f'{key} Class :\n {value} \n')
+            show_confusion_matrix(y_test, y_test_pred)
             print("\nAccuracy for Log :",metrics.accuracy_score(y_test, y_test_pred))
         elif classifier == "rfc":
             # From AZURE (17 min 31s):
@@ -221,6 +239,41 @@ def train_model(clean_tweets_data, classifiers_list):
     # clf_loss = log_loss(y_test, y_test_pred)
     # print(clf_loss)
 
+def show_confusion_matrix(y_test, y_test_pred):
+    """
+        Graphs Confusion Matrix for Given Classifier
+        High Percents in off diagonals means model mislabeled a tweet
+        High Percents in diagonals means that model accurately predicted sentiment
+        Parameters
+        ----------
+        tweet : string
+        clean_data : {Tweet : Polarity : Preprocessed}
+        Void Return
+
+        Prints
+        --------
+            Prediction of Tweet through its polarity score
+    """
+    # Get and reshape confusion matrix data
+    matrix = confusion_matrix(y_test, y_test_pred)
+    matrix = matrix.astype('float') / matrix.sum(axis=1)[:, np.newaxis]
+
+    # Build the plot
+    plt.figure(figsize=(16,7))
+    sns.set(font_scale=1.4)
+    sns.heatmap(matrix, annot=True, annot_kws={'size':10},
+                cmap=plt.cm.Greens, linewidths=0.2)
+
+    # Add labels to the plot
+    class_names = ['Negative','Neutral','Positive']
+    tick_marks = np.arange(len(class_names))
+    tick_marks2 = tick_marks + 0.5
+    plt.xticks(tick_marks, class_names, rotation=0)
+    plt.yticks(tick_marks2, class_names, rotation=0)
+    plt.xlabel('Predicted Polairty Label')
+    plt.ylabel('True Polarity Label')
+    plt.title('Confusion Matrix for Log Model')
+    plt.show()
 
 def predict_tweet(tweet, clean_data):
     """
@@ -260,12 +313,14 @@ def predict_tweet(tweet, clean_data):
 
 frac = read_data("fixed_final_dataset.csv")
 clean_tweets = preprocessing(frac)
+
+# Prints how many tweets are in each value
 # print(frac['Polarity'].value_counts())
 
-classifiers = ["svm", "log", "rfc"]
+classifiers = ["log"]
 train_model(clean_tweets,classifiers)
 
-INPUT_TWEET =  "I love animals so much!"
-predict_classifiers = ["svm"]
-CLEANED_TWEET = preprocess_tweet(INPUT_TWEET)
-predict_tweet(CLEANED_TWEET, clean_tweets)
+# INPUT_TWEET =  "I love animals so much!"
+# predict_classifiers = ["svm"]
+# CLEANED_TWEET = preprocess_tweet(INPUT_TWEET)
+# predict_tweet(CLEANED_TWEET, clean_tweets)
