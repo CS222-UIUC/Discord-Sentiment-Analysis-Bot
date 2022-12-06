@@ -1,0 +1,12 @@
+-1.0 Class :
+ {'precision': 0.7845488774229535, 'recall': 0.6777088477985906, 'f1-score': 0.7272257230570366, 'support': 16603} 
+0.0 Class :
+ {'precision': 0.7609786470351243, 'recall': 0.833647634714922, 'f1-score': 0.7956573354267988, 'support': 24923} 
+1.0 Class :
+ {'precision': 0.8106066190019902, 'recall': 0.8070671118775915, 'f1-score': 0.808832993178517, 'support': 27253} 
+accuracy Class :
+ 0.7854723098620219 
+macro avg Class :
+ {'precision': 0.7853780478200226, 'recall': 0.7728078647970347, 'f1-score': 0.7772386838874508, 'support': 68779} 
+weighted avg Class :
+ {'precision': 0.7863330089063658, 'recall': 0.7854723098620219, 'f1-score': 0.7843589178943021, 'support': 68779} 
